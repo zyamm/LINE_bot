@@ -15,9 +15,11 @@ import os
 
 app = Flask(__name__)
 
+#line_bot_api = LineBotApi(os.environ["YOUR_CHANNEL_ACCESS_TOKEN"])
+#handler = WebhookHandler(os.environ["YOUR_CHANNEL_SECRET"])
+
 line_bot_api = LineBotApi(os.environ["YOUR_CHANNEL_ACCESS_TOKEN"])
 handler = WebhookHandler(os.environ["YOUR_CHANNEL_SECRET"])
-
 
 @app.route("/", methods=['POST'])
 def index():
