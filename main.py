@@ -10,15 +10,16 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 
-import settings
+import os
+
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi(settings.YOUR_CHANNEL_ACCESS_TOKEN)
-handler = WebhookHandler(settings.YOUR_CHANNEL_SECRET)
+line_bot_api = LineBotApi(os.environ["YOUR_CHANNEL_ACCESS_TOKEN"])
+handler = WebhookHandler(os.environ["YOUR_CHANNEL_SECRET"])
 
 
-@app.route("/index", methods=['POST'])
+@app.route("/", methods=['POST'])
 def index():
     return 'OK'
 
@@ -49,5 +50,5 @@ def handle_message(event):
 
 
 if __name__ == "__main__":
-    port = int(settings.PORT)
+    port = int(os.getenv("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
